@@ -12,7 +12,8 @@ module "ec2_instance" {
   instance_type          = var.instance_type
   key_name               = aws_key_pair.ssh-key.key_name
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
-  subnet_id              = data.aws_subnets.default.ids.0
+  subnet_id              = data.aws_subnets.filtered.ids[0]
+
 
   root_block_device = {
     type = var.volume_type
